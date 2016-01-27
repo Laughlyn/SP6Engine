@@ -47,7 +47,7 @@ public class GameContainer implements Runnable {
 		int frames = 0;
 
 		while (isRunning) {
-			boolean render = true;
+			boolean render = false;
 
 			firstTime = System.nanoTime() / 1000000000.0;
 			passedTime = firstTime - lastTime;

@@ -1,4 +1,4 @@
-package gfx;
+package com.G12.core.fx;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

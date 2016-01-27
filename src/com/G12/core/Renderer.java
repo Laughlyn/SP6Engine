@@ -1,8 +1,8 @@
 package com.G12.core;
 
-import gfx.Image;
-
 import java.awt.image.DataBufferInt;
+
+import com.G12.core.fx.Image;
 
 public class Renderer {
 

@@ -36,7 +36,7 @@ public class Window {
 		frame.setResizable(false);
 		frame.setVisible(true);
 		
-		canvas.createBufferStrategy(2);
+		canvas.createBufferStrategy(1);
 		bs = canvas.getBufferStrategy();
 		g = bs.getDrawGraphics();
 	}
