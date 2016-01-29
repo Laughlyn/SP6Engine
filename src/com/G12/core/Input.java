@@ -1,4 +1,4 @@
-package com.G12.core;
+package game.Engine;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -6,92 +6,79 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class Input implements KeyListener, MouseListener, MouseMotionListener {
-
-	private GameContainer gc;
-
-	private static boolean[] keys = new boolean[256];
-	private static boolean[] keysLast = new boolean[256];
+public class Input implements KeyListener, MouseListener, MouseMotionListener{
 	
-	private static boolean[] buttons = new boolean[10];
-	private static boolean[] buttonsLast = new boolean[10];
+
+	//private GameContainer gc;
 	
-	public Input(GameContainer gc) {
-		this.gc = gc;
+	/* boolean array to make you able to press multiple keys*/
+	private static boolean[] keys = new boolean[256];				//if key was pressed this frame, for holding down
+	private static boolean[] keysLast = new boolean[256];			//keys from the last frame, if it was realeased or pressed
+	
+	private static boolean[] buttons = new boolean[5];			
+	private static boolean[] buttonsLast = new boolean[5];
+		
+	public Input(GameContainer gc){
+		//this.gc = gc;
+		
 		gc.getWindow().getCanvas().addKeyListener(this);
 		gc.getWindow().getCanvas().addMouseListener(this);
 		gc.getWindow().getCanvas().addMouseMotionListener(this);
 	}
 	
-	public void update() {
+	public void update(){
 		keysLast = keys.clone();
 		buttonsLast = buttons.clone();
 	}
-	
-	public static boolean isKey(int keyCode) {
-		return keys[keyCode];
-	}
+	public static InputState getKeyState(int keyCode){
+		if(keysLast[keyCode]){
+			if (keys[keyCode]){
+				return InputState.StillPressed;
+			}
+			else
+				return InputState.JustReleased;
+		}
+		if(keys[keyCode]){
+			return InputState.JustPressed;
+		}
+		else
+			return InputState.StillReleased;
 
-	public static boolean isKeyPressed(int keyCode) {
-		return keys[keyCode] && !keysLast[keyCode];
 	}
-	
-	public static boolean isKeyReleased(int keyCode) {
-		return !keys[keyCode] && keysLast[keyCode];
-	}
-	
-	public static boolean isButton(int button) {
+//	public static boolean isKey(int keyCode){		//for holding down a key
+//		return keys[keyCode];
+//	}
+//	
+//	public static boolean isKeyPressed(int keyCode){
+//		return keys[keyCode] && !keysLast[keyCode];
+//	}
+//	
+//	public static boolean isKeyReleased(int keyCode){
+//		return !keys[keyCode] && keysLast[keyCode];
+//	}
+//	
+	public static boolean isButton(int button){		//for holding down a key
 		return buttons[button];
 	}
 	
-	public static boolean isButtonPressed(int button) {
+	public static boolean isButtonPressed(int button){
 		return buttons[button] && !buttonsLast[button];
 	}
 	
-	public static boolean isButtonReleased(int button) {
+	public  static boolean isButtonReleased(int button){
 		return !buttons[button] && buttonsLast[button];
-	}
-	
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		buttons[e.getButton()] = true;
-
+		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		buttons[e.getButton()] = false;
-
+		
 	}
 
 	@Override
@@ -103,13 +90,44 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		keys[e.getKeyCode()] = false;
-
+		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
+		
+		
 	}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		
+		
+	}
+	
 
 }
