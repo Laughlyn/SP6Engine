@@ -37,4 +37,8 @@ public class Renderer {
 			}
 		}
 	}
+	
+	public void drawString(String string, int offX, int offY) {
+		//TODO
+	}
 }

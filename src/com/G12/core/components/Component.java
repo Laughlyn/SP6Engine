@@ -1,5 +1,5 @@
 package com.G12.core.components;
 
-public abstract class GameObject {
+public abstract class Component {
 
 }

@@ -1,5 +1,6 @@
 package com.G12.core;
 
+
 public class GameContainer implements Runnable {
 
 	private Thread thread;
@@ -13,7 +14,9 @@ public class GameContainer implements Runnable {
 	private String title = "SP6Engine by G12";
 	private double frameCap = 1.0 / 60.0;
 	private boolean isRunning = false;
-
+	
+	
+	
 	public GameContainer(AbstractGame game) {
 		this.game = game;
 	}
@@ -21,7 +24,7 @@ public class GameContainer implements Runnable {
 	public void start() {
 		if (isRunning)
 			return;
-
+		
 		window = new Window(this);
 		renderer = new Renderer(this);
 		input = new Input(this);

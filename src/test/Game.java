@@ -7,10 +7,12 @@ import com.G12.core.GameContainer;
 import com.G12.core.Input;
 import com.G12.core.Renderer;
 import com.G12.core.fx.Image;
+import com.G12.core.fx.Text;
 
 public class Game extends AbstractGame {
 
 	private Image image = new Image("/characters.png");
+	private Text text = new Text("Hello!");
 
 	public static void main(String args[]) {
 		GameContainer gc = new GameContainer(new Game());
@@ -35,5 +37,6 @@ public class Game extends AbstractGame {
 	@Override
 	public void render(GameContainer gc, Renderer r) {
 		r.drawImage(image, (int)x, (int)y);
+//		r.drawString("Hello!", 0, 0);
 	}
 }

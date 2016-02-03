@@ -3,6 +3,7 @@ package com.G12.core;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -36,6 +37,10 @@ public class Window {
 		frame.setResizable(false);
 		frame.setVisible(true);
 		
+		//Font stuff
+		frame.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+		//frame.getContentPane().add(new Text());
+		
 		canvas.createBufferStrategy(1);
 		bs = canvas.getBufferStrategy();
 		g = bs.getDrawGraphics();
@@ -59,5 +64,9 @@ public class Window {
 
 	public BufferedImage getImage() {
 		return image;
+	}
+
+	public JFrame getFrame() {
+		return frame;
 	}
 }
