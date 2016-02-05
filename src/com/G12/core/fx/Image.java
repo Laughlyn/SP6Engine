@@ -9,22 +9,34 @@ public class Image {
 
 	public int width, height;
 	public int[] pixels;
-
-	public Image(String path) {
+	
+	public Image(String path){
 		BufferedImage image = null;
-
+		
 		try {
 			image = ImageIO.read(Image.class.getResourceAsStream(path));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		width = image.getWidth();
 		height = image.getHeight();
 		pixels = image.getRGB(0, 0, width, height, null, 0, width);
+		
 
-		image.flush();
+		
+		image.flush(); 		//remove it from ram, java should do this by auto?
 	}
 
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public int[] getPixels() {
+		return pixels;
+	}
 }

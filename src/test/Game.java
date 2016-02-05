@@ -1,10 +1,12 @@
 package test;
 
+import com.G12.core.*;
+
 import java.awt.event.KeyEvent;
 
 import com.G12.core.AbstractGame;
 import com.G12.core.GameContainer;
-import com.G12.core.Input;
+import com.G12.core.InputState;
 import com.G12.core.Renderer;
 import com.G12.core.fx.Image;
 import com.G12.core.fx.Text;
@@ -12,7 +14,6 @@ import com.G12.core.fx.Text;
 public class Game extends AbstractGame {
 
 	private Image image = new Image("/characters.png");
-	private Text text = new Text("Hello!");
 
 	public static void main(String args[]) {
 		GameContainer gc = new GameContainer(new Game());
@@ -27,7 +28,7 @@ public class Game extends AbstractGame {
 
 	@Override
 	public void update(GameContainer gc, float dt) {
-		if (Input.isKey(KeyEvent.VK_A)) {
+		if (Input.getKeyState(KeyEvent.VK_A)==InputState.JustPressed) {
 			yVel += GRAVITY;
 			y += yVel * dt;
 			x += xVel * dt;
