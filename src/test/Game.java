@@ -12,6 +12,7 @@ public class Game extends AbstractGame {
 	public Game() {
 		manager = new GOManager();
 		manager.addObject(new Player());
+		manager.addObject(new Player2());
 	}
 
 	public static void main(String args[]) {
@@ -22,7 +23,7 @@ public class Game extends AbstractGame {
 		gc.start();
 	}
 
-	static float GRAVITY = 100;
+	static float GRAVITY = 1;
 
 	@Override
 	public void update(GameContainer gc, float dt) {
