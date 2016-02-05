@@ -9,11 +9,13 @@ import com.G12.core.GameContainer;
 import com.G12.core.InputState;
 import com.G12.core.Renderer;
 import com.G12.core.fx.Image;
-import com.G12.core.fx.Text;
+import com.G12.core.fx.Sound;
 
 public class Game extends AbstractGame {
 
-	private Image image = new Image("/characters.png");
+	private Image characters = new Image("/characters.png");
+	
+	private Sound coin = new Sound("/coin pickup.wav");
 
 	public static void main(String args[]) {
 		GameContainer gc = new GameContainer(new Game());
@@ -32,12 +34,14 @@ public class Game extends AbstractGame {
 			yVel += GRAVITY;
 			y += yVel * dt;
 			x += xVel * dt;
+			coin.play();
 		}
 	}
 
 	@Override
 	public void render(GameContainer gc, Renderer r) {
-		r.drawImage(image, (int)x, (int)y);
-//		r.drawString("Hello!", 0, 0);
+		r.drawImage(characters, (int)x, (int)y);
+		
+		//		r.drawString("Hello!", 0, 0);
 	}
 }
