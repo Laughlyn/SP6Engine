@@ -7,11 +7,6 @@ import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 
-import com.G12.core.GameContainer;
-import com.G12.core.Renderer;
-import com.G12.core.components.Component;
-import com.G12.core.components.GameObject;
-
 public class Image {
 
 	public int width, height;
