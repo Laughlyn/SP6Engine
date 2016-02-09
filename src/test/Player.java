@@ -16,29 +16,46 @@ public class Player extends GameObject {
 
 	private Sound coin = new Sound("/bell_ding1.wav");
 
-	float speed = 150;
+	float speed = 50;
+	float airSpeedMod = (float) 0.1;
+	float maxSpeed = 200;
 	float y = 50;
 	float x = 50;
-	float xVel = 150;
+	float xVel = 0;
 	float yVel = 0;
+	private boolean grounded = false;
 
 	@Override
 	public void update(GameContainer gc, float dt) {
 		if (Input.getKeyState(KeyEvent.VK_W) == InputState.JustPressed) {
-			yVel -= 300;
+			if (grounded) {yVel -= 150;
+			coin.play();
+			grounded = false;}
 		}
-		if (Input.getKeyState(KeyEvent.VK_A) == InputState.JustPressed) {
-			xVel -= speed;
+		if (Input.getKeyState(KeyEvent.VK_A) == InputState.StillPressed) {
+			if(grounded)xVel -= speed;
+			else xVel -= speed*airSpeedMod;
 		}
-		if (Input.getKeyState(KeyEvent.VK_D) == InputState.JustPressed) {
-			xVel += speed;
+		if (Input.getKeyState(KeyEvent.VK_D) == InputState.StillPressed) {
+			if(grounded)xVel += speed;
+			else xVel += speed*airSpeedMod;
 		}
 		if (Input.getKeyState(KeyEvent.VK_S) == InputState.JustPressed) {
-			yVel += 300;
+			if(!grounded) yVel += 150;
 		}
-		yVel += Game.GRAVITY;
+		
+		yVel += Game.GRAVITY_Y;
+		xVel += Game.GRAVITY_X;
+		yVel += yVel * 0;
+		if(grounded)xVel += -1*xVel * 0.1;
+		if (xVel > maxSpeed) xVel = maxSpeed;
+		if (xVel < -1*maxSpeed) xVel = -1*maxSpeed;
 		y += yVel * dt;
+		if (y < 0) {y = 0; yVel = (float) (yVel* -0.5);;}
+		if (y > 240-player.getHeight()) {y = 240 - player.getHeight(); yVel = (float) (yVel* -0.0); grounded = true;}
 		x += xVel * dt;
+		if (x > 320-player.getWidth()) {x = 320 - player.getWidth(); xVel = (float) (xVel* -0.5);}
+		if (x < 0) {x = 0; xVel = (float) (xVel* -0.5);}
 	}
 
 	@Override

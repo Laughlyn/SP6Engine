@@ -23,7 +23,8 @@ public class Game extends AbstractGame {
 		gc.start();
 	}
 
-	static float GRAVITY = 1;
+	static float GRAVITY_X = 0;
+	static float GRAVITY_Y = 5;
 
 	@Override
 	public void update(GameContainer gc, float dt) {
