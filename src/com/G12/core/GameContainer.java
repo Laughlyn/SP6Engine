@@ -1,5 +1,8 @@
 package com.G12.core;
 
+import com.G12.core.components.Physics;
+
+
 public class GameContainer implements Runnable {
 
 	private Thread thread;
@@ -7,13 +10,16 @@ public class GameContainer implements Runnable {
 	private Window window;
 	private Renderer renderer;
 	private Input input;
+	private Physics physics;
 	
 	private int width = 320, height = 240;
 	private float scale = 2.0f;
 	private String title = "SP6Engine by G12";
 	private double frameCap = 1.0 / 60.0;
 	private boolean isRunning = false;
-
+	
+	
+	
 	public GameContainer(AbstractGame game) {
 		this.game = game;
 	}
@@ -21,10 +27,11 @@ public class GameContainer implements Runnable {
 	public void start() {
 		if (isRunning)
 			return;
-
+		
 		window = new Window(this);
 		renderer = new Renderer(this);
 		input = new Input(this);
+		physics = new Physics(0,1);
 
 		thread = new Thread(this);
 		thread.run();
