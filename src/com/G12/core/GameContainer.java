@@ -1,6 +1,5 @@
 package com.G12.core;
 
-
 public class GameContainer implements Runnable {
 	private Thread thread;
 	private AbstractGame game;
@@ -138,9 +137,4 @@ public class GameContainer implements Runnable {
 	public Window getWindow() {
 		return window;
 	}
-
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/Loader
