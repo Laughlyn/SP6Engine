@@ -139,4 +139,8 @@ public class GameContainer implements Runnable {
 		return window;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/Loader
