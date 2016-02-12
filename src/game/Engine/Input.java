@@ -57,7 +57,7 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener{
 //		return !keys[keyCode] && keysLast[keyCode];
 //	}
 //	
-	public static boolean isButton(int button){		//for holding down a key
+	public static boolean isButton(int button){		//for holding down a button
 		return buttons[button];
 	}
 	
