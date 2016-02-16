@@ -13,12 +13,13 @@ public class Game extends AbstractGame {
 		manager = new GOManager();
 		manager.addObject(new Player());
 		manager.addObject(new Player2());
+		manager.addObject(new Player3());
 	}
 
 	public static void main(String args[]) {
-		GameContainer gc = new GameContainer(new Game());
-		gc.setWidth(320);
-		gc.setHeight(240);
+		GameContainer gc = new GameContainer(new Game(), "Cool game!");
+		gc.setWidth(640);
+		gc.setHeight(480);
 		gc.setScale(2.0f);
 		gc.start();
 	}

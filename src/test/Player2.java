@@ -6,8 +6,9 @@ import com.G12.core.GameContainer;
 import com.G12.core.Input;
 import com.G12.core.InputState;
 import com.G12.core.Renderer;
+import com.G12.core.components.Collider;
+import com.G12.core.components.Component;
 import com.G12.core.components.GameObject;
-import com.G12.core.components.Physics;
 import com.G12.core.fx.Image;
 import com.G12.core.fx.Sound;
 
@@ -24,6 +25,10 @@ public class Player2 extends GameObject {
 	float xVel = 0;
 	float yVel = 0;
 	private boolean grounded = false;
+	
+	public Player2() {
+		addComponent(new Collider(this));
+	}
 
 	@Override
 	public void update(GameContainer gc, float dt) {
@@ -53,11 +58,19 @@ public class Player2 extends GameObject {
 		x += xVel * dt;
 		if (x > 320-player.getWidth()) {x = 320 - player.getWidth(); xVel = (float) (xVel* -0.7);}
 		if (x < 0) {x = 0; xVel = (float) (xVel* -0.7);}
+		
+		updateComponents(gc, dt);
 	}
 
 	@Override
 	public void render(GameContainer gc, Renderer r) {
 		r.drawImage(player, (int) x, (int) y);
+	}
+
+	@Override
+	public void componentEvent(Component component) {
+		System.out.println("Heydgahdasfffff");
+		
 	}
 
 }

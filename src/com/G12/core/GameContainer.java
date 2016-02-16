@@ -1,26 +1,27 @@
 package com.G12.core;
 
+import com.G12.core.components.Physics;
+
 public class GameContainer implements Runnable {
 	private Thread thread;
 	private AbstractGame game;
 	private Window window;
 	private Renderer ren;
 	private Input input;
+	private Physics physics;
 
 	private boolean isRunning = false;
 	private double frameCap = 1.0 / 60.0;
 	private int width;
 	private int height;
-	private float scale;	
+	private float scale;
 	private String fpsCounter = "";
 	private String title = "Game Engine - Training";
-
 
 	public GameContainer(AbstractGame game, String title) {
 		this.game = game;
 		this.title = title;
 	}
-
 
 	public void start() {
 		if (isRunning)
@@ -30,6 +31,7 @@ public class GameContainer implements Runnable {
 		window = new Window(this);
 		ren = new Renderer(this);
 		input = new Input(this);
+		physics = new Physics();
 
 		thread = new Thread(this);
 		thread.run();
@@ -42,12 +44,13 @@ public class GameContainer implements Runnable {
 	}
 
 	public void run() {
-		//control frame-rate and how often we update
+		// control frame-rate and how often we update
 		isRunning = true;
 		/* delta time */
 		double firstTime = 0;
 		double lastTime = System.currentTimeMillis() / 1000.0; // to convert
-															// nanosec to sec;
+																// millisec to
+																// sec;
 		double passedTime = 0;
 		double unprocessedTime = 0;
 
@@ -67,6 +70,7 @@ public class GameContainer implements Runnable {
 
 			while (unprocessedTime > frameCap) {
 				game.update(this, (float) frameCap);
+				physics.update();
 				input.update();
 				unprocessedTime -= frameCap;
 				render = true;
@@ -79,11 +83,9 @@ public class GameContainer implements Runnable {
 			}
 
 			if (render) {
-				ren.clear();
-				game.render(this, ren); //render game
-				// render game
-				// update window
-				window.update();
+				ren.clear();			//clear
+				game.render(this, ren);	// render game
+				window.update();		// update window
 				frames++;
 			} else {
 				try {
@@ -127,7 +129,7 @@ public class GameContainer implements Runnable {
 	}
 
 	public String getTitle() {
-		return title+ " - FPS: " + fpsCounter;
+		return title + " - FPS: " + fpsCounter;
 	}
 
 	public void setTitle(String title) {
@@ -136,5 +138,13 @@ public class GameContainer implements Runnable {
 
 	public Window getWindow() {
 		return window;
+	}
+
+	public Physics getPhysics() {
+		return physics;
+	}
+
+	public void setPhysics(Physics physics) {
+		this.physics = physics;
 	}
 }

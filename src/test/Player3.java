@@ -14,93 +14,89 @@ import com.G12.core.components.Movable;
 import com.G12.core.fx.Image;
 import com.G12.core.fx.Sound;
 
-public class Player extends GameObject {
-
+public class Player3 extends GameObject {
 
 	private Loader load = Loader.getInstance();
 	private Image player = load.getImage("/character.png");
 	private Sound coin = load.getSound("/bell_ding1.wav");
-	//private Sound coin = new Sound("/bell_ding1.wav");
-	//private Image player = new Image("/Tank_tiny.png");
+	// private Sound coin = new Sound("/bell_ding1.wav");
+	// private Image player = new Image("/Tank_tiny.png");
 
-	float speed = 25;
+	float speed = 125;
 	float airSpeedMod = (float) 0.1;
 	float maxSpeed = 200;
 	float y = 50;
-	float x = 50;
-	float lastX;
-	float lastY;
+	float x = 100;
 	float xVel = 0;
 	float yVel = 0;
+	float lastX;
+	float lastY;
 	private boolean grounded = false;
 
-	public Player() {
+	public Player3() {
 		setX(x);
 		setY(y);
-		setW(player.getWidth());
-		setH(player.getHeight());
 		addComponent(new Collider(this));
 		addComponent(new Movable(this));
 	}
-	
+
 	@Override
 	public void update(GameContainer gc, float dt) {
 		if (Input.getKeyState(KeyEvent.VK_W) == InputState.JustPressed) {
-			if (grounded){
-				yVel -= 150;
+			if (grounded) {
+				yVel -= 300;
 				coin.play();
 				grounded = false;
 			}
 		}
 		if (Input.getKeyState(KeyEvent.VK_A) == InputState.StillPressed) {
-			if(grounded){
+			if (grounded) {
 				xVel -= speed;
-			}
-			else 
-				xVel -= speed*airSpeedMod;
+			} else
+				xVel -= speed * airSpeedMod;
 		}
 		if (Input.getKeyState(KeyEvent.VK_D) == InputState.StillPressed) {
-			if(grounded)
+			if (grounded)
 				xVel += speed;
-			else 
-				xVel += speed*airSpeedMod;
+			else
+				xVel += speed * airSpeedMod;
 		}
 		if (Input.getKeyState(KeyEvent.VK_S) == InputState.JustPressed) {
-			if(!grounded)
+			if (!grounded)
 				yVel += 150;
 		}
-		
+
 		yVel += Game.GRAVITY_Y;
 		xVel += Game.GRAVITY_X;
 		yVel += yVel * 0;
-		
-		if(grounded)
-			xVel += -1*xVel * 0.15;
-		
+
+		if (grounded)
+			xVel += -1 * xVel * 0.15;
+
 		if (xVel > maxSpeed)
 			xVel = maxSpeed;
-		
-		if (xVel < -1*maxSpeed)
-			xVel = -1*maxSpeed;
-		
+
+		if (xVel < -1 * maxSpeed)
+			xVel = -1 * maxSpeed;
+
 		setY(getY() + yVel * dt);
-		if (getY() < 0){
+		if (getY() < 0) {
 			setY(0);
-			yVel = (float) (yVel* -0.5);
+			yVel = (float) (yVel * -0.5);
 		}
-		if (getY() > 240-player.getHeight()){
+		if (getY() > 240 - player.getHeight()) {
 			setY(240 - player.getHeight());
-			yVel = (float) (yVel* -0.0);
+			yVel = (float) (yVel * -0.0);
 			grounded = true;
 		}
 		setX(getX() + xVel * dt);
-		if (getX() > 320-player.getWidth()){
+		if (getX() > 320 - player.getWidth()) {
 			setX(320 - player.getWidth());
-			xVel = (float) (xVel* -0.5);
+			xVel = (float) (xVel * -0.5);
 		}
-		if (getX() < 0){
+		if (getX() < 0) {
 			setX(0);
-			xVel = (float) (xVel* -0.5);
+			xVel = (float) (xVel * -0.5);
 		}
 		lastX = getX();
 		lastY = getY();
@@ -114,8 +110,8 @@ public class Player extends GameObject {
 
 	@Override
 	public void componentEvent(Component component) {
-		if(component.getType().equals("Collider")) {
-			System.out.println("Heydgah");
+		if (component.getType().equals("Collider")) {
+			System.out.println("Heydgdadsaddddah");
 			setX(lastX);
 			setY(lastY);
 			setxVel(0);
@@ -138,5 +134,4 @@ public class Player extends GameObject {
 	public void setyVel(float yVel) {
 		this.yVel = yVel;
 	}
-
 }
