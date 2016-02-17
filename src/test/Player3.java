@@ -36,6 +36,8 @@ public class Player3 extends GameObject {
 	public Player3() {
 		setX(x);
 		setY(y);
+		setW(player.getWidth());
+		setH(player.getHeight());
 		addComponent(new Collider(this));
 		addComponent(new Movable(this));
 	}
@@ -84,15 +86,15 @@ public class Player3 extends GameObject {
 			setY(0);
 			yVel = (float) (yVel * -0.5);
 		}
-		if (getY() > 240 - player.getHeight()) {
-			setY(240 - player.getHeight());
-			yVel = (float) (yVel * -0.0);
+		if (getY() > gc.getHeight()-player.getHeight()){
+			setY(gc.getHeight() - player.getHeight());
+			yVel = (float) (yVel* -0.0);
 			grounded = true;
 		}
 		setX(getX() + xVel * dt);
-		if (getX() > 320 - player.getWidth()) {
-			setX(320 - player.getWidth());
-			xVel = (float) (xVel * -0.5);
+		if (getX() > gc.getWidth()-player.getWidth()){
+			setX(gc.getWidth() - player.getWidth());
+			xVel = (float) (xVel* -0.5);
 		}
 		if (getX() < 0) {
 			setX(0);

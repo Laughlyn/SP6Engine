@@ -23,7 +23,7 @@ public class GameContainer implements Runnable {
 		this.title = title;
 	}
 
-	public void start() {
+	public synchronized void start() {
 		if (isRunning)
 			return;
 
@@ -37,13 +37,13 @@ public class GameContainer implements Runnable {
 		thread.run();
 	}
 
-	public void stop() {
+	public synchronized void stop() {
 		if (!isRunning)
 			return;
 		isRunning = false;
 	}
 
-	public void run() {
+	public synchronized void run() {
 		// control frame-rate and how often we update
 		isRunning = true;
 		/* delta time */

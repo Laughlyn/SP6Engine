@@ -83,27 +83,29 @@ public class Player extends GameObject {
 		if (xVel < -1*maxSpeed)
 			xVel = -1*maxSpeed;
 		
+		
+		lastY = getY();
 		setY(getY() + yVel * dt);
 		if (getY() < 0){
 			setY(0);
 			yVel = (float) (yVel* -0.5);
 		}
-		if (getY() > 240-player.getHeight()){
-			setY(240 - player.getHeight());
+		if (getY() > gc.getHeight()-player.getHeight()){
+			setY(gc.getHeight() - player.getHeight());
 			yVel = (float) (yVel* -0.0);
 			grounded = true;
 		}
+		
+		lastX = getX();
 		setX(getX() + xVel * dt);
-		if (getX() > 320-player.getWidth()){
-			setX(320 - player.getWidth());
+		if (getX() > gc.getWidth()-player.getWidth()){
+			setX(gc.getWidth() - player.getWidth());
 			xVel = (float) (xVel* -0.5);
 		}
 		if (getX() < 0){
 			setX(0);
 			xVel = (float) (xVel* -0.5);
 		}
-		lastX = getX();
-		lastY = getY();
 		updateComponents(gc, dt);
 	}
 

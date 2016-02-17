@@ -33,6 +33,7 @@ public class Window {
 		frame.setResizable(false);
 		frame.setVisible(true);
 		
+		
 		canvas.createBufferStrategy(1);		//prevent flickering images, pre render image before display?
 		bs = canvas.getBufferStrategy();
 		g = bs.getDrawGraphics();
