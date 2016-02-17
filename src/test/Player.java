@@ -39,6 +39,7 @@ public class Player extends GameObject {
 		setY(y);
 		setW(player.getWidth());
 		setH(player.getHeight());
+		addComponent(new Collider(this, 0, 8, 0, -8));
 		addComponent(new Collider(this));
 		addComponent(new Movable(this));
 	}

@@ -20,14 +20,12 @@ public class Physics {
 				Collider c1 = colliders.get(j);
 
 				if (Math.abs(c0.getX() - c1.getX()) < c0.gethW() + c1.gethW()) {
-					if (Math.abs(c0.getY() - c1.getY()) < c0.gethH()
-							+ c1.gethH()) {
+					if (Math.abs(c0.getY() - c1.getY()) < c0.gethH() + c1.gethH()) {
 						c0.collision(c1.getObject());
 						c1.collision(c0.getObject());
 					}
 				}
 			}
 		}
-		//colliders.clear();
 	}
 }

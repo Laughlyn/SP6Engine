@@ -18,8 +18,8 @@ public class Game extends AbstractGame {
 
 	public static void main(String args[]) {
 		GameContainer gc = new GameContainer(new Game(), "Cool game!");
-		gc.setWidth(640);
-		gc.setHeight(480);
+		gc.setWidth(200);
+		gc.setHeight(160);
 		gc.setScale(2.0f);
 		gc.start();
 	}

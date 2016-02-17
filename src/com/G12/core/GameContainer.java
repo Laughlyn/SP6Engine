@@ -95,13 +95,14 @@ public class GameContainer implements Runnable {
 				}
 			}
 
-			cleanUp();
+			
 
 		}
+		cleanUp();
 	}
 
 	private void cleanUp() {
-
+		window.cleanUp();
 	}
 
 	public int getWidth() {

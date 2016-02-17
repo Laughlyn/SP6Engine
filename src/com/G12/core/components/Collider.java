@@ -4,7 +4,7 @@ import com.G12.core.GameContainer;
 import com.G12.core.Renderer;
 
 public class Collider extends Component{
-	float x, y, hW, hH;
+	float x, y, hW, hH, xOffset=0, yOffset=0, wOffset=0, hOffset = 0;
 	private GameObject owner;
 
 	public Collider(GameObject object) {
@@ -13,14 +13,23 @@ public class Collider extends Component{
 		y = owner.getY();
 		Physics.addCollider(this);
 	}
+	
+	public Collider (GameObject object, int x, int y, int w, int h) {
+		this.owner = object;
+		xOffset = x;
+		yOffset = y;
+		wOffset = w;
+		hOffset = h;
+		Physics.addCollider(this);
+	}
 
 	@Override
 	public void update(GameContainer gc, GameObject object, float dt)
 	{
-		x = owner.getX();
-		y = owner.getY();
-		hW = owner.getW()/2;
-		hH = owner.getH()/2;
+		x = owner.getX()+xOffset;
+		y = owner.getY()+yOffset;
+		hW = owner.getW()/2+wOffset;
+		hH = owner.getH()/2+hOffset;
 	}
 
 

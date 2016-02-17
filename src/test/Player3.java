@@ -86,16 +86,19 @@ public class Player3 extends GameObject {
 			setY(0);
 			yVel = (float) (yVel * -0.5);
 		}
+		
 		if (getY() > gc.getHeight()-player.getHeight()){
 			setY(gc.getHeight() - player.getHeight());
 			yVel = (float) (yVel* -0.0);
 			grounded = true;
 		}
+		
 		setX(getX() + xVel * dt);
 		if (getX() > gc.getWidth()-player.getWidth()){
 			setX(gc.getWidth() - player.getWidth());
 			xVel = (float) (xVel* -0.5);
 		}
+		
 		if (getX() < 0) {
 			setX(0);
 			xVel = (float) (xVel * -0.5);
